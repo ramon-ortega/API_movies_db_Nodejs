@@ -11,6 +11,7 @@ const genresRoutes = require('./routes/genresRoutes');
 
 // Llamado a mis api rutas
 const apiGenresRoutes = require('./routes/api/genresRoutes');
+const apiMoviesRoutes = require('./routes/api/moviesRoutes');
 
 //Aquí pueden colocar las rutas de las APIs
 
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 //URL encode  - Para que nos pueda llegar la información desde el formulario al req.body
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Aquí estoy disponiendo la posibilidad para utilizar el seteo en los formularios para el usod e los metodos put ó delete
@@ -33,6 +35,7 @@ app.use(genresRoutes);
 
 // API Routes
 app.use('/api', apiGenresRoutes);
+app.use('/api', apiMoviesRoutes);
 
 
 //Activando el servidor desde express
