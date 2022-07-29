@@ -25,6 +25,36 @@ const actorsController = {
                     data: actor
                 });
             });
+    },
+    'create': (req, res) => {
+        db.Actor.create(
+            req.body
+        ).then((actor)=>{
+            res.status(201).json({
+                meta: {
+                    status: 201,
+                    url: "api/actors/create"
+                },
+                data: {
+                    actor
+                }
+            });
+        });
+    },
+    'delete': (req, res) => {
+        let actorId = req.params.id;
+        db.Actor.destroy({
+            where: {id: actorId}, force: true
+        })
+        .then((actor)=>{
+            return res.status(202).json({
+                meta: {
+                    status: 202,
+                    url: "api/actors/delete/{id}"
+                },
+                data: actor
+            });
+        });
     }
 }   
 
