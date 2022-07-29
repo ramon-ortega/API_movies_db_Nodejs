@@ -11,6 +11,7 @@ const moviesController = {
             res.status(201).json({
                 meta: {
                     status: 201,
+                    url: "api/movies/create"
                 },
                 data: {
                     movie
@@ -26,7 +27,8 @@ const moviesController = {
         .then((movie)=>{
             return res.status(202).json({
                 meta: {
-                    status: 202
+                    status: 202,
+                    url: "api/movies/delete/{id}"
                 },
                 data: movie
             });
